@@ -5,9 +5,13 @@ using System.Collections;
 
 public class DisplayCurrentDieValue : MonoBehaviour
 {
+	//Array setup as copied from the Midterm Concepts walkthrough.
+	public int[] rollResults = new int[100];
+	private int arrayPosition = 0;
+	private int currentValue = 1;
+
 	public LayerMask dieValueColliderLayer = -1;
 
-	private int currentValue = 1;
 
 	private bool rollComplete = false;
 
@@ -29,6 +33,13 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
 			rollComplete = false;
+		}
+	}
+	public void CaptureToArray () {
+		if (arrayPosition < rollResults.Length) {
+			rollResults [arrayPosition] = currentValue;
+			Debug.Log ("The current array position is " + arrayPosition + " with a value of " + rollResults[arrayPosition]);
+			arrayPosition++;
 		}
 	}
 
