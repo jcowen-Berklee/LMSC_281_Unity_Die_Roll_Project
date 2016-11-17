@@ -8,7 +8,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	//Array setup as copied from the Midterm Concepts walkthrough.
 	public int[] rollResults = new int[100];
 	private int arrayPosition = 0;
-	private int currentValue = 1;
+	public int currentValue = 1;
 
 	public LayerMask dieValueColliderLayer = -1;
 
@@ -37,6 +37,8 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	}
 	public void CaptureToArray () {
 		if (arrayPosition < rollResults.Length) {
+			//for some reason, even though the system displays the correct "currentvalue" to the GUI Label, it prints out only 0s to the Debug, and I have been
+			//unable to locate the problem. This of course means that the rest of the project is faulty.
 			rollResults [arrayPosition] = currentValue;
 			Debug.Log ("The current array position is " + arrayPosition + " with a value of " + rollResults[arrayPosition]);
 			arrayPosition++;
