@@ -13,15 +13,22 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	//Variable that captures the number of rolls performed.
 	public int rolls = 0;
 
+	//JC - a bool to control when the die is rolled
+	public bool readyToRoll = true;
+
 	// Update is called once per frame
 	void Update ()
 	{
-		//automation of 100 die rolls
-		if(rolls<100)
-		{
-			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);
-			GetComponent<Rigidbody>().AddTorque(Random.onUnitSphere*torqueAmount,forceMode);
-			rolls++;
+		//JC - we also need to only roll once the die comes to rest, so we will need another boolean to contro that
+
+		if (readyToRoll) {
+			//automation of 100 die rolls
+			if (rolls < 100) {
+				GetComponent<Rigidbody> ().AddForce (Random.onUnitSphere * forceAmount, forceMode);
+				GetComponent<Rigidbody> ().AddTorque (Random.onUnitSphere * torqueAmount, forceMode);
+				rolls++;
+			}
+			readyToRoll = false;
 		}
 	}
 }

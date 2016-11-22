@@ -27,8 +27,10 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
 		{
+			CaptureToArray ();
 			rollComplete = true;
 			Debug.Log("Die roll complete, die is at rest");
+			this.GetComponent<ApplyForceInRandomDirection> ().readyToRoll = true;
 		}
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
